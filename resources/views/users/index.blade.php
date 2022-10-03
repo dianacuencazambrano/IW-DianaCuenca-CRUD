@@ -3,7 +3,20 @@
 @section('title', 'Users')
 
 @section('content')
-    <h1>Users List</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Users List</h1>
+            </div>
+            <div class="col-6"></div>
+            <div class="col">
+                <a href="{{ route('users.create') }}" type="button" class="btn btn-info" style="color:aliceblue">NEW</a>
+            </div>
+        </div>
+
+    </div>
+
+
     <ul>
         <table class="table">
             <thead>
@@ -27,7 +40,7 @@
                             <td>Inactive</td>
                         @endif
                         <td>
-                            <a href="{{route ('users.show', $user)}}">Show</a>
+                            <a href="{{ route('users.show', $user) }}">Show</a>
                         </td>
                     </tr>
                 @empty

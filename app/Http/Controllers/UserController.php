@@ -24,4 +24,15 @@ class UserController extends Controller
         $user = User::find($user);
         return view('users.show', compact('user'));
     }
+
+    public function create()
+    {
+        return view('users.create');
+    }
+
+    public function store(Request $request)
+    {
+        User::create($request->all());
+        return $this->index();
+    }
 }
