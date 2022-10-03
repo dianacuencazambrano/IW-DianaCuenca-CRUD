@@ -1,8 +1,9 @@
 @extends('partials.layout')
 
-@section('title', 'Home')
+@section('title', 'CrearUsuario')
 
 @section('content')
 
-    <h1>HOME</h1>
+    <h1>CREATE USER</h1>
+
 @endsection
