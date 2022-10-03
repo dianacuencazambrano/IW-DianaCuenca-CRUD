@@ -18,4 +18,10 @@ class UserController extends Controller
         $users = User::get();
         return view('users.index', compact('users'));
     }
+
+    public function show($user)
+    {
+        $user = User::find($user);
+        return view('users.show', compact('user'));
+    }
 }

@@ -2,7 +2,6 @@
 
 @section('title', 'Users')
 
-
 @section('content')
     <h1>Users List</h1>
     <ul>
@@ -13,6 +12,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">Last Name</th>
                     <th scope="col">Status</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -27,7 +27,7 @@
                             <td>Inactive</td>
                         @endif
                         <td>
-                            {{-- <a href="{{route ('mostrarusuario', $user)}}">Show</a> --}}
+                            <a href="{{route ('users.show', $user)}}">Show</a>
                         </td>
                     </tr>
                 @empty
