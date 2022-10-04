@@ -10,7 +10,7 @@
             </div>
             <div class="col-6"></div>
             <div class="col">
-                <a href="{{ route('users.create') }}" type="button" class="btn btn-info" style="color:aliceblue">NEW</a>
+                <a href="{{ route('users.create') }}" type="button" class="btn">NEW</a>
             </div>
         </div>
 
