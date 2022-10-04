@@ -22,7 +22,16 @@ class UserController extends Controller
     public function show($user)
     {
         $user = User::find($user);
-        return view('users.show', compact('user'));
+        if($user->status == 1){
+            $action = "Disable";
+        }else{
+            $action = "Enable";
+        }
+            
+        return view('users.show', [
+            'user'  => $user,
+            'action' => $action,
+        ]);
     }
 
     public function create()
@@ -33,6 +42,38 @@ class UserController extends Controller
     public function store(Request $request)
     {
         User::create($request->all());
+        //return $this->index();
+        return redirect()->route('users.index')->with(['success' => '¡¡Usuario Creado Exitosamente!!']);
+    }
+
+    public function edit($user)
+    {
+        $user = User::find($user);
+        return view('users.edit', compact('user'));
+    }
+
+    public function update(Request $request)
+    {
+        $user = User::find($request->id);
+        $user->name = $request->name;
+        $user->lastname = $request->lastname;
+        $user->email = $request->email;
+        $user->save();
+        return $this->index();
+    }
+
+    public function changeStatus($user)
+    {
+        $user = User::find($user);
+        if($user->status == 1)
+        {
+            $user->status = 0;
+            $user->save();
+        }else
+        {
+            $user->status = 1;
+            $user->save();
+        }
         return $this->index();
     }
 }

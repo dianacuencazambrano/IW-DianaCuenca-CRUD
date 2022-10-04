@@ -21,6 +21,7 @@ Route::prefix('users')->group(function (){
     Route::post('/store', 'App\Http\Controllers\UserController@store')->name('users.store');
     Route::get('/edit/{id}', 'App\Http\Controllers\UserController@edit')->name('users.edit');
     Route::patch('/update/{id}', 'App\Http\Controllers\UserController@update')->name('users.update');
+    Route::patch('/changeStatus/{id}', 'App\Http\Controllers\UserController@changeStatus')->name('users.changeStatus');
     Route::get('/show/{id}', 'App\Http\Controllers\UserController@show')->name('users.show');
-    Route::delete('/delete/{id}', 'App\Http\Controllers\UserController@destroy')->name('users.delete');
+    
 });

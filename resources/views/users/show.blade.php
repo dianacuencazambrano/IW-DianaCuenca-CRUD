@@ -19,9 +19,10 @@
                 </p>
                 <hr>
                 <a href="{{ route('users.edit', $user) }}" class="card-link">Update</a>
-                <form method="POST" action="{{ route('users.delete', $user) }}">
-                    @csrf @method('DELETE')
-                    <a href="{{ route('users.index') }}" class="card-link">Disable</a>
+                <a href="#" onclick="document.getElementById('change-status').submit()" class="card-link">{{ $action }}</a>
+                <form id="change-status" method="POST" action="{{ route('users.changeStatus', $user) }}">
+                    @csrf @method('PATCH')
+                    
                 </form>
             </div>
         </div>
