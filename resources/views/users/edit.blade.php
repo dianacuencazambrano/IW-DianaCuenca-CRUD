@@ -18,6 +18,7 @@
             <input name="email" placeholder="Email" value="{{ old('email', $user->email) }}" required><br>
         </div>
         {{-- <input hidden name="password" placeholder="Password" value="{{ old('password') }}" required><br> --}}
+        
         <button type="submit" class="btn btn-primary">Update</button>
         
     </form>
