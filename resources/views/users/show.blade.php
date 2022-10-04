@@ -7,7 +7,7 @@
     <h1 style="margin-left: 10px">User</h1>
     <div class="card text-center" style="width: 18rem; margin-left: 10px">
         <div class="container" style="align-items: center;">
-            <img class="card-img-top" src="/img_avatar.jpg" alt="Avatar">
+            <img class="card-img-top" style="width: 25%" src="/img_avatar.jpg" alt="Avatar">
             <div class="card-body">
                 <h4 class="card-title"><b>{{ $user->name . ' ' . $user->lastname }}</b></h4>
                 <p>
