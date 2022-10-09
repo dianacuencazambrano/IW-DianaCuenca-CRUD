@@ -4,7 +4,7 @@
 
 @section('content')
     <br>
-    <h1 style="margin-left: 10px">User</h1>
+    <h1 style="margin-left: 10px">User {{$user->id}}</h1>
     <div class="card text-center" style="width: 18rem; margin-left: 10px">
         <div class="container" style="align-items: center;">
             <img class="card-img-top" style="width: 25%" src="/img_avatar.jpg" alt="Avatar">
@@ -17,6 +17,11 @@
                         <td>Inactive</td>
                     @endif
                 </p>
+                <p>{{ $user->email}}</p>
+                <p>{{ $user->birthday}}</p>
+                <p>{{ $user->identification}}</p>
+                <p>{{ $user->phoneNumber}}</p>
+                <p>{{ $user->homeAddress}}</p>
                 <hr>
                 <a href="{{ route('users.edit', $user) }}" class="card-link">Update</a>
                 <a href="#" onclick="document.getElementById('change-status').submit()" class="card-link">{{ $action }}</a>
