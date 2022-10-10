@@ -12,10 +12,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/welcome', 'App\Http\Controllers\HomeController@index')->name('welcome');
+Route::get('/', 'App\Http\Controllers\DashboardController@index')->name('home')->middleware('auth');
+Route::get('/login', 'App\Http\Controllers\AuthController@index')->name('auth.index')->middleware('guest');
+Route::post('/login', 'App\Http\Controllers\AuthController@login')->name('auth.login');
+Route::post('logout', 'App\Http\Controllers\AuthController@logout')->name('auth.logout');
 
-Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home');
 
-Route::prefix('users')->group(function (){
+Route::prefix('users')->middleware('auth')->group(function (){
     Route::get('/', 'App\Http\Controllers\UserController@index')->name('users.index');
     Route::get('/create', 'App\Http\Controllers\UserController@create')->name('users.create');
     Route::post('/store', 'App\Http\Controllers\UserController@store')->name('users.store');
@@ -23,5 +27,4 @@ Route::prefix('users')->group(function (){
     Route::patch('/update/{id}', 'App\Http\Controllers\UserController@update')->name('users.update');
     Route::patch('/changeStatus/{id}', 'App\Http\Controllers\UserController@changeStatus')->name('users.changeStatus');
     Route::get('/show/{id}', 'App\Http\Controllers\UserController@show')->name('users.show');
-    
 });

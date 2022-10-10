@@ -4,5 +4,5 @@
 
 @section('content')
 
-    <h1>HOME</h1>
+    <h1>DASHBOARD HOME</h1>
 @endsection
