@@ -38,3 +38,14 @@ Route::prefix('students')->middleware('auth')->group(function (){
     Route::patch('/changeStatus/{id}', 'App\Http\Controllers\StudentController@changeStatus')->name('students.changeStatus');
     Route::get('/show/{id}', 'App\Http\Controllers\StudentController@show')->name('students.show');
 });
+
+Route::prefix('skills')->middleware('auth')->group(function (){
+    Route::get('/', 'App\Http\Controllers\SkillController@index')->name('skills.index');
+    Route::get('/create', 'App\Http\Controllers\SkillController@create')->name('skills.create');
+    Route::post('/store', 'App\Http\Controllers\SkillController@store')->name('skills.store');
+    Route::get('/edit/{id}', 'App\Http\Controllers\SkillController@edit')->name('skills.edit');
+    Route::patch('/update/{id}', 'App\Http\Controllers\SkillController@update')->name('skills.update');
+    Route::patch('/changeStatus/{id}', 'App\Http\Controllers\SkillController@changeStatus')->name('skills.changeStatus');
+    Route::get('/show/{id}', 'App\Http\Controllers\SkillController@show')->name('skills.show');
+});
+

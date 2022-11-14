@@ -121,7 +121,7 @@ class StudentController extends Controller
                 $user->status = 0;
                 $user->save();
             } else {
-                $user->status = 1;
+                $user->status = 2;
                 $user->save();
             }
             return $this->index();

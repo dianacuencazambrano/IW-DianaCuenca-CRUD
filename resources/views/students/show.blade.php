@@ -1,6 +1,6 @@
 @extends('partials.layout')
 
-@section('title', 'ShowUser')
+@section('title', 'ShowStudent')
 
 @section('content')
     <br>

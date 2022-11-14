@@ -19,4 +19,8 @@ class Skill extends Model
         'title_skill',
         'description_skill',
     ];
+
+    public function status(){
+        return $this->belongsTo(Status::class, 'id_status');
+    }
 }

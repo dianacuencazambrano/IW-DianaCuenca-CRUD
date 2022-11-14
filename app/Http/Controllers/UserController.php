@@ -12,12 +12,6 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         try {
@@ -142,7 +136,7 @@ class UserController extends Controller
         try {
             $user = User::find($user);
             if ($user->status == 1) {
-                $user->status = 0;
+                $user->status = 2;
                 $user->save();
             } else {
                 $user->status = 1;
