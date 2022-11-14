@@ -69,19 +69,18 @@ class UserController extends Controller
             $user->homeAddress = $request->input('homeAddress');
             $user->email = $request->input('email');
             $user->password  = bcrypt($request->input('password'));
-            dd($user);
-            //$user->save();
+            $user->save();
 
             if($user->id_role == 2){
                 $teach = new Teacher();
                 $teach->id_user = $user->id_user;
                 $teach->id_class = $request->input('id_class');
-                //$teach->save();
+                $teach->save();
             }elseif($user->id_role == 3){
                 $stud = new Student();
                 $stud->id_user = $user->id_user;
                 $stud->id_class = $request->input('id_class');
-                //$stud->save();
+                $stud->save();
             }
 
             return redirect()->route('users.index')->with(['success' => '¡¡Usuario Creado Exitosamente!!']);
@@ -109,10 +108,29 @@ class UserController extends Controller
     {
         try {
             $user = User::find($request->id);
-            $user->name = $request->name;
-            $user->lastname = $request->lastname;
-            $user->email = $request->email;
+            $user->id_role = $request->input('id_role');
+            $user->name = $request->input('name');
+            $user->lastname = $request->input('lastname');
+            $user->birthday = $request->input('birthday');
+            $user->identification = $request->input('identification');
+            $user->phoneNumber = $request->input('phoneNumber');
+            $user->homeAddress = $request->input('homeAddress');
+            $user->email = $request->input('email');
+            $user->password  = bcrypt($request->input('password'));
             $user->save();
+
+            if($user->id_role == 2){
+                $teach = Teacher::find($user->id);
+                $teach->id_user = $user->id_user;
+                $teach->id_class = $request->input('id_class');
+                $teach->save();
+            }elseif($user->id_role == 3){
+                $stud = Student::find($user->id);
+                $stud->id_user = $user->id_user;
+                $stud->id_class = $request->input('id_class');
+                $stud->save();
+            }
+
             return $this->index();
         } catch (\Throwable $th) {
             return response()->json(['error' => $th], 400);

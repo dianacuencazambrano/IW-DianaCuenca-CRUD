@@ -52,7 +52,6 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         try {
-            //dd($request->all());
             $user = new User();
             $user->id_role = $request->input('id_role');
             $user->name = $request->input('name');
@@ -92,10 +91,22 @@ class StudentController extends Controller
     {
         try {
             $user = User::find($request->id);
-            $user->name = $request->name;
-            $user->lastname = $request->lastname;
-            $user->email = $request->email;
+            $user->id_role = $request->input('id_role');
+            $user->name = $request->input('name');
+            $user->lastname = $request->input('lastname');
+            $user->birthday = $request->input('birthday');
+            $user->identification = $request->input('identification');
+            $user->phoneNumber = $request->input('phoneNumber');
+            $user->homeAddress = $request->input('homeAddress');
+            $user->email = $request->input('email');
+            $user->password = bcrypt($request->input('identification'));
             $user->save();
+
+            $stud = Student::find($user->id);
+            $stud->id_user = $user->id_user;
+            $stud->id_class = $request->input('id_class');
+            $stud->save();
+
             return $this->index();
         } catch (\Throwable $th) {
             return response()->json(['error' => $th], 400);
