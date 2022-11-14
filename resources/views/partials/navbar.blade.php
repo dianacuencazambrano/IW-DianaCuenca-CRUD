@@ -1,15 +1,17 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="/welcome">Welcome</a>
+    <a class="navbar-brand" href="/">Home</a>
     @guest
         <a class="navbar-brand" href="{{ route('auth.index') }}">Login</a>
     @else
-        <a class="navbar-brand" href="/">Home</a>
+        
         @if(auth()->user()->role->id_role == 1)
             <a class="navbar-brand" href="{{ route('users.index') }}">Users</a>
         @endif
         @if(auth()->user()->role->id_role ?? 3)
             <a class="navbar-brand" href="{{ route('students.index') }}">Students</a>
             <a class="navbar-brand" href="{{ route('skills.index') }}">Skills</a>
+            {{-- <a class="navbar-brand" href="{{ route('')}}">Register Scores</a> --}}
         @endif
         <form style="display: inline" action="{{ route('auth.logout') }}" method="POST" name="logoutForm">
             @csrf

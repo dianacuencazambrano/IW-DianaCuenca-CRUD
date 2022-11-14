@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+// Route::get('/', 'App\Http\Controllers\HomeController@home')->name('home');
+Route::get('/', 'App\Http\Controllers\HomeController@home')->name('home')->middleware('auth');
 Route::get('/welcome', 'App\Http\Controllers\HomeController@index')->name('welcome');
 Route::get('/login', 'App\Http\Controllers\AuthController@index')->name('auth.index')->middleware('guest');
 Route::post('/login', 'App\Http\Controllers\AuthController@login')->name('auth.login');
@@ -47,4 +51,10 @@ Route::prefix('skills')->middleware('auth')->group(function (){
     Route::patch('/changeStatus/{id}', 'App\Http\Controllers\SkillController@changeStatus')->name('skills.changeStatus');
     Route::get('/show/{id}', 'App\Http\Controllers\SkillController@show')->name('skills.show');
 });
+
+Route::prefix('skills')->middleware('auth')->group(function (){
+    Route::get('/', 'App\Http\Controllers\SkillController@index')->name('skills.index');
+    Route::patch('/update/{id}', 'App\Http\Controllers\SkillController@update')->name('skills.update');
+});
+
 

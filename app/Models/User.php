@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Role;
 use App\Models\Status;
+use App\Models\Classroom;
 
 class User extends Authenticatable
 {
@@ -58,5 +59,9 @@ class User extends Authenticatable
 
     public function status(){
         return $this->belongsTo(Status::class, 'id_status');
+    }
+
+    public function class(){
+        return $this->belongsTo(Classroom::class, 'id_class');
     }
 }

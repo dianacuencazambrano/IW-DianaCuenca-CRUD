@@ -18,4 +18,9 @@ class HomeController extends Controller
             return response()->json(['error' => $th], 400);
         }
     }
+
+    public function home(){
+        return view('home');
+    }
+
 }
