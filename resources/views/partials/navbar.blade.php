@@ -3,7 +3,6 @@
     @guest
         <a class="navbar-brand" href="{{ route('auth.index') }}">Login</a>
     @else
-    
         <a class="navbar-brand" href="/">Home</a>
         @if(auth()->user()->role->id_role == 1)
             <a class="navbar-brand" href="{{ route('users.index') }}">Users</a>

@@ -19,4 +19,8 @@ class Classroom extends Model
         'identifier_class',
         'level_class',
     ];
+
+    public function status(){
+        return $this->belongsTo(Status::class, 'id_status');
+    }
 }
