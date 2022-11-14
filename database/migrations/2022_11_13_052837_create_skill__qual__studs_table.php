@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_skill');
             $table->foreign('id_skill')->references('id_skill')->on('skills')->onDelete('CASCADE');
 
-            $table->unsignedBigInteger('id_qual');
+            $table->unsignedBigInteger('id_qual')->default(3);
             $table->foreign('id_qual')->references('id_qual')->on('qualifications')->onDelete('CASCADE');
 
             $table->unsignedBigInteger('id_stud');

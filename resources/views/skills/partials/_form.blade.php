@@ -10,5 +10,5 @@
 </div>
 <div class="mb-3">
     <textarea name="description_skill" type="text" placeholder="Description"
-        value="{{ old('description_skill', $skill->description_skill ?? null) }}" required>{{ $skill->description_skill }}</textarea><br>
+        value="{{ old('description_skill', $skill->description_skill ?? null) }}" required>{{ $skill->description_skill ?? null }}</textarea><br>
 </div>

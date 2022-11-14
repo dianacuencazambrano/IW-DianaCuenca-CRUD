@@ -12,6 +12,7 @@ class Skill_Qual_Stud extends Model
 {
     use HasFactory;
     protected $primaryKey = 'id';
+    protected $table = 'skill_qual_studs';
 
     public function user(){
         return $this->belongsTo(User::class, 'id_user');

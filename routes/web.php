@@ -52,9 +52,9 @@ Route::prefix('skills')->middleware('auth')->group(function (){
     Route::get('/show/{id}', 'App\Http\Controllers\SkillController@show')->name('skills.show');
 });
 
-Route::prefix('skills')->middleware('auth')->group(function (){
-    Route::get('/', 'App\Http\Controllers\SkillController@index')->name('skills.index');
-    Route::patch('/update/{id}', 'App\Http\Controllers\SkillController@update')->name('skills.update');
+Route::prefix('skill_qual_stud')->middleware('auth')->group(function (){
+    Route::get('/', 'App\Http\Controllers\Skill_Qual_StudController@index')->name('skill_qual_stud.index');
+    Route::patch('/', 'App\Http\Controllers\Skill_Qual_StudController@update')->name('skill_qual_stud.update');
 });
 
 
