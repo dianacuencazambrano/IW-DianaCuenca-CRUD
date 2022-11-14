@@ -28,3 +28,13 @@ Route::prefix('users')->middleware('auth')->group(function (){
     Route::patch('/changeStatus/{id}', 'App\Http\Controllers\UserController@changeStatus')->name('users.changeStatus');
     Route::get('/show/{id}', 'App\Http\Controllers\UserController@show')->name('users.show');
 });
+
+Route::prefix('students')->middleware('auth')->group(function (){
+    Route::get('/', 'App\Http\Controllers\StudentController@index')->name('students.index');
+    Route::get('/create', 'App\Http\Controllers\StudentController@create')->name('students.create');
+    Route::post('/store', 'App\Http\Controllers\StudentController@store')->name('students.store');
+    Route::get('/edit/{id}', 'App\Http\Controllers\StudentController@edit')->name('students.edit');
+    Route::patch('/update/{id}', 'App\Http\Controllers\StudentController@update')->name('students.update');
+    Route::patch('/changeStatus/{id}', 'App\Http\Controllers\StudentController@changeStatus')->name('students.changeStatus');
+    Route::get('/show/{id}', 'App\Http\Controllers\StudentController@show')->name('students.show');
+});

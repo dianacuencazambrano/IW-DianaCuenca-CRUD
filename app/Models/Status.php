@@ -9,6 +9,7 @@ class Status extends Model
 {
     use HasFactory;
     protected $primaryKey = 'id_status';
+    protected $table = 'status';
     /**
      * The attributes that are mass assignable.
      *

@@ -6,17 +6,15 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1>Users List</h1>
+                <h1>Students List</h1>
             </div>
             <div class="col-6"></div>
             <div class="col">
-                <a href="{{ route('users.create') }}" type="button" class="btn">NEW</a>
+                <a href="{{ route('students.create') }}" type="button" class="btn">NEW</a>
             </div>
         </div>
 
     </div>
-
-
     <ul>
         <table class="table">
             <thead>
@@ -33,12 +31,12 @@
                 @forelse($users as $user)
                     <tr>
                         <th scope="row">{{ $user->id_user }}</th>
-                        <td>{{ $user->name}}</td>
+                        <td>{{ $user->name }}</td>
                         <td>{{ $user->lastname }}</td>
-                        <td>{{ $user->role->name_role ?? 'not found' }}</td>
-                        <td>{{ $user->status->name_status ?? 'not found'}}</td>
+                        <td>{{ $user->role->name_role }}</td>
+                        <td>{{ $user->status->name_status }}</td>
                         <td>
-                            <a href="{{ route('users.show', $user) }}">Show</a>
+                            <a href="{{ route('students.show', $user) }}">Show</a>
                         </td>
                     </tr>
                 @empty

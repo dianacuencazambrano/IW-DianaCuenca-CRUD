@@ -3,9 +3,14 @@
     @guest
         <a class="navbar-brand" href="{{ route('auth.index') }}">Login</a>
     @else
+    
         <a class="navbar-brand" href="/">Home</a>
-        <a class="navbar-brand" href="{{ route('users.index') }}">Users</a>
-        
+        @if(auth()->user()->role->id_role == 1)
+            <a class="navbar-brand" href="{{ route('users.index') }}">Users</a>
+        @endif
+        @if(auth()->user()->role->id_role == 2)
+            <a class="navbar-brand" href="{{ route('students.index') }}">Students</a>
+        @endif
         <form style="display: inline" action="{{ route('auth.logout') }}" method="POST" name="logoutForm">
             @csrf
             <a class="navbar-brand" href="#" onclick="this.closest('form').submit()">Logout</a>
