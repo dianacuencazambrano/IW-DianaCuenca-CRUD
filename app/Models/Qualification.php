@@ -20,4 +20,7 @@ class Qualification extends Model
         'meaning_qual',
         'description_qual',
     ];
+    public function status(){
+        return $this->belongsTo(Status::class, 'id_status');
+    }
 }

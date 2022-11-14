@@ -58,13 +58,13 @@ class SkillController extends Controller
 
     public function edit($skill)
     {
-        //try {
+        try {
             return view('skills.edit',[
                 'skill' => Skill::find($skill),
             ]);
-        // } catch (\Throwable $th) {
-        //     return response()->json(['error' => $th], 400);
-        // }
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th], 400);
+        }
     }
 
     public function update(Request $request)

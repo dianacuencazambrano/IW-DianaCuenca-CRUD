@@ -8,8 +8,9 @@
         @if(auth()->user()->role->id_role == 1)
             <a class="navbar-brand" href="{{ route('users.index') }}">Users</a>
         @endif
-        @if(auth()->user()->role->id_role == 2)
+        @if(auth()->user()->role->id_role ?? 3)
             <a class="navbar-brand" href="{{ route('students.index') }}">Students</a>
+            <a class="navbar-brand" href="{{ route('skills.index') }}">Skills</a>
         @endif
         <form style="display: inline" action="{{ route('auth.logout') }}" method="POST" name="logoutForm">
             @csrf

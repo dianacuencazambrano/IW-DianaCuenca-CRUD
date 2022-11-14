@@ -1,6 +1,6 @@
 @extends('partials.layout')
 
-@section('title', 'Users')
+@section('title', 'Students')
 
 @section('content')
     <div class="container">
