@@ -117,11 +117,11 @@ class StudentController extends Controller
     {
         try {
             $user = User::find($user);
-            if ($user->status == 1) {
-                $user->status = 0;
+            if ($user->id_status == '1') {
+                $user->id_status = '2';
                 $user->save();
             } else {
-                $user->status = 2;
+                $user->id_status = '1';
                 $user->save();
             }
             return $this->index();

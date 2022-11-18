@@ -87,7 +87,6 @@ class UserController extends Controller
     {
         try {
             $user = User::find($user);
-            dd($user->role);
             return view('users.edit',[
                 'user' => $user,
                 'roles' => Role::get(),
@@ -135,11 +134,11 @@ class UserController extends Controller
     {
         try {
             $user = User::find($user);
-            if ($user->status == 1) {
-                $user->status = 2;
+            if ($user->id_status == '1') {
+                $user->id_status = '2';
                 $user->save();
             } else {
-                $user->status = 1;
+                $user->id_status = '1';
                 $user->save();
             }
             return $this->index();

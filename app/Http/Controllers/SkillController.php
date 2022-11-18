@@ -85,11 +85,11 @@ class SkillController extends Controller
     {
         try {
             $skill = Skill::find($skill);
-            if ($skill->id_status == 1) {
-                $skill->id_status = 2;
+            if ($skill->id_status == '1') {
+                $skill->id_status = '2';
                 $skill->save();
             } else {
-                $skill->id_status = 1;
+                $skill->id_status = '1';
                 $skill->save();
             }
             return $this->index();
