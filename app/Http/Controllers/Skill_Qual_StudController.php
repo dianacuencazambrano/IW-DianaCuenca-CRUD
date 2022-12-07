@@ -17,7 +17,7 @@ class Skill_Qual_StudController extends Controller
             $classT = Teacher::where('id_user', Auth::user()->id_user)->get('id_class');
             $class = (count($classT) == 0) ? '3' : $classT[0]->id_class; 
             $skill_qual_stud = Skill_Qual_Stud::all();
-            $students = Student::where('id_class', $class)->get();
+            $students = (Auth()->user()->id_role == 1) ? Student::all() : Student::where('id_class', $class)->get();
             $skills = Skill::where('id_status', 1)->get();
             $count = $students->count() * $skills->count();
             return view('skill_qual_stud.index', [

@@ -18,6 +18,8 @@ return new class extends Migration
 
             $table->unsignedBigInteger('id_status')->default(1);
             $table->foreign('id_status')->references('id_status')->on('status')->onDelete('CASCADE');
+            $table->unsignedBigInteger('id_skill');
+            $table->foreign('id_skill')->references('id_skill')->on('skills')->onDelete('CASCADE');
 
             $table->string('title_rein');
             $table->text('description_rein')->nullable();
