@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Classroom;
+use App\Models\Student;
 use App\Models\Qualification;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,11 @@ class HomeController extends Controller
     }
 
     public function home(){
-        return view('home');
+        $students = Student::all();
+
+        return view('home',[
+            'students' => $students
+        ]);
     }
 
 }

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Role;
+use App\Models\Skill;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\User;
 use App\Models\Classroom;
+use App\Models\Skill_Qual_Stud;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -75,6 +77,15 @@ class UserController extends Controller
                 $stud->id_user = $user->id_user;
                 $stud->id_class = $request->input('id_class');
                 $stud->save();
+
+                $skills = Skill::where('id_status',1)->get();
+                foreach ($skills as $skill){
+                    $scores = new Skill_Qual_Stud();
+                    $scores->id_stud = $stud->id_stud;
+                    $scores->id_skill = $skill->id_skill;
+                    $scores->id_qual = 3;
+                    $scores->save();
+                }
             }
 
             return redirect()->route('users.index')->with(['success' => '¡¡Usuario Creado Exitosamente!!']);

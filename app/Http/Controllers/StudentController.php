@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Classroom;
 use App\Models\Role;
+use App\Models\Skill;
+use App\Models\Skill_Qual_Stud;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\User;
@@ -12,7 +14,8 @@ use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         try {
             $users = User::where('id_role', 3)->get();
             return view('students.index', [
@@ -23,7 +26,8 @@ class StudentController extends Controller
         }
     }
 
-    public function show($user){
+    public function show($user)
+    {
         try {
             $user = User::find($user);
             if ($user->id_status == 1) {
@@ -69,6 +73,15 @@ class StudentController extends Controller
             $stud->id_class = $request->input('id_class');
             $stud->save();
 
+            $skills = Skill::where('id_status', 1)->get();
+            foreach ($skills as $skill) {
+                $scores = new Skill_Qual_Stud();
+                $scores->id_stud = $stud->id_stud;
+                $scores->id_skill = $skill->id_skill;
+                $scores->id_qual = 3;
+                $scores->save();
+            }
+
             return redirect()->route('students.index')->with(['success' => '¡¡Usuario Creado Exitosamente!!']);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th], 400);
@@ -79,7 +92,7 @@ class StudentController extends Controller
     {
         try {
             $user = User::find($user);
-            return view('students.edit',[
+            return view('students.edit', [
                 'user' => $user,
             ]);
         } catch (\Throwable $th) {
