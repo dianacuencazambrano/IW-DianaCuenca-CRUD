@@ -13,6 +13,7 @@
         @if(auth()->user()->role->id_role != 3)
             <a class="navbar-brand" href="{{ route('students.index') }}">Students</a>
             <a class="navbar-brand" href="{{ route('skills.index') }}">Skills</a>
+            <a class="navbar-brand" href="{{ route('reinforcements.index') }}">Reinforcements</a>
             <a class="navbar-brand" href="{{ route('skill_qual_stud.index')}}">Register Scores</a>
         @endif
         <form style="display: inline" action="{{ route('auth.logout') }}" method="POST" name="logoutForm">

@@ -19,4 +19,11 @@ class Reinforcement extends Model
         'title_rein',
         'description_rein',
     ];
+    public function status(){
+        return $this->belongsTo(Status::class, 'id_status');
+    }
+
+    public function skill(){
+        return $this->belongsTo(Skill::class, 'id_skill');
+    }
 }
