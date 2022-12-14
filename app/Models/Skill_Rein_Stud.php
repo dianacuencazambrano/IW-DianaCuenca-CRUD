@@ -9,4 +9,17 @@ class Skill_Rein_Stud extends Model
 {
     use HasFactory;
     protected $primaryKey = 'id';
+
+    public function user(){
+        return $this->belongsTo(User::class, 'id_user');
+    }
+
+    public function skill(){
+        return $this->belongsTo(Skill::class, 'id_skill');
+    }
+
+    public function rein(){
+        return $this->belongsTo(Qualification::class, 'id_rein');
+    }
 }
+
