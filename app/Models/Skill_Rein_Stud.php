@@ -9,6 +9,7 @@ class Skill_Rein_Stud extends Model
 {
     use HasFactory;
     protected $primaryKey = 'id';
+    protected $table = 'skill_rein_studs';
 
     public function user(){
         return $this->belongsTo(User::class, 'id_user');
@@ -19,7 +20,7 @@ class Skill_Rein_Stud extends Model
     }
 
     public function rein(){
-        return $this->belongsTo(Qualification::class, 'id_rein');
+        return $this->belongsTo(Reinforcement::class, 'id_rein');
     }
 }
 

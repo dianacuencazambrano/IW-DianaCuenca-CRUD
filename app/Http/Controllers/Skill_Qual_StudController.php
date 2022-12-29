@@ -13,7 +13,7 @@ class Skill_Qual_StudController extends Controller
 {
     public function index()
     {
-        //try {
+        try {
             $classT = Teacher::where('id_user', Auth::user()->id_user)->get('id_class');
             $class = (count($classT) == 0) ? '3' : $classT[0]->id_class; 
             $skill_qual_stud = Skill_Qual_Stud::all();
@@ -26,9 +26,9 @@ class Skill_Qual_StudController extends Controller
                 'skills' => $skills,
                 'count' => $count,
             ]);
-        // } catch (\Throwable $th) {
-        //     return response()->json(['error' => $th], 400);
-        // }
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th], 400);
+        }
     }
 
     public function update(Request $request)

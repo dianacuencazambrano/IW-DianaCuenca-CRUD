@@ -8,6 +8,13 @@
             <div class="col">
                 <h1>Students List</h1>
             </div>
+            <div class="col">
+                <form id="publish-reinforcements" method="POST" action="{{ route('skill_rein_stud.publish') }}">
+                    @csrf @method('PATCH')
+
+                </form>
+                <a href="#" onclick="document.getElementById('publish-reinforcements').submit()"class="btn btn-info">Publish Reinforcements</a href="">
+            </div>
         </div>
         <ul>
             <table class="table">

@@ -67,4 +67,7 @@ Route::prefix('skill_qual_stud')->middleware('auth')->group(function (){
     Route::patch('/', 'App\Http\Controllers\Skill_Qual_StudController@update')->name('skill_qual_stud.update');
 });
 
+Route::prefix('skill_rein_stud')->middleware('auth')->group(function (){
+    Route::patch('/', 'App\Http\Controllers\Skill_Rein_StudController@publishReinforcements')->name('skill_rein_stud.publish');
+});
 
