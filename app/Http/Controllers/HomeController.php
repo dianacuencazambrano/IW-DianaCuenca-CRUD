@@ -67,16 +67,21 @@ class HomeController extends Controller
         $aux = [];
 
         if(Auth::user()->id_role == 3){
-            $rein = Skill_Rein_Stud::where('id_stud', $student[0]->id_stud)->get();       
-            foreach($rein as $r){
-                
+            $student = Student::where('id_user',$id_user)->get();
+            $rein = Skill_Rein_Stud::where('id_stud', $student[0]->id_stud)->orderBy('created_at', 'DESC')->get();
+            //dd($rein);
+            $date = $rein[0]->created_at;   
+            foreach($rein as $key => $value){
+                if($value->created_at == $date){
+                    array_push($aux, $value);
+                }
             } 
         }
         
         return view('home',[
             'student' => $student,
             //'quals' => $aux,
-            'reinforcements' => $rein
+            'reinforcements' => $aux
         ]);
     }
 
