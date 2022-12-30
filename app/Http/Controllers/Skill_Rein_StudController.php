@@ -25,6 +25,8 @@ class Skill_Rein_StudController extends Controller
             $aux = [];
             $aux2 = [];
             $auxRein = [];
+            $auxQual = [];
+            $object = [];
             
             if(Auth()->user()->id_role != 1){
                 foreach($students as $stud){
@@ -36,29 +38,89 @@ class Skill_Rein_StudController extends Controller
                     }
                 }
                 
+                // if($aux){
+                //     dd($aux);
+                //     foreach($aux as $skill_qual_stud){
+                //         if($skill_qual_stud->id_qual == 2){
+                //             foreach($reinf as $rein){
+                //                 if($rein->id_skill == $skill_qual_stud->id_skill){
+                //                     //array_push($auxRein, $rein);
+                //                     $r = Reinforcement::where('id_status', 1)->where('id_skill', $rein->id_skill)->get();
+                //                     foreach($r as $key => $value){
+                //                         array_push($auxRein, $value);
+                //                     }
+                //                     $index = array_rand($auxRein, 1);//get random reinforcement from skill
+                //                     //dd($auxRein);
+                //                     $srs = new Skill_Rein_Stud();
+                //                     $srs->id_stud = $skill_qual_stud->id_stud;
+                //                     $srs->id_skill = $auxRein[$index]->id_skill;
+                //                     $srs->id_rein = $auxRein[$index]->id_rein;
+                //                     $srs->save();
+                //                 }
+                //             }
+                //         }
+                //     }
+                // }
+
                 if($aux){
                     foreach($aux as $skill_qual_stud){
                         if($skill_qual_stud->id_qual == 2){
-                            foreach($reinf as $rein){
-                                if($rein->id_skill == $skill_qual_stud->id_skill){
-                                    //array_push($auxRein, $rein);
+                            array_push($auxQual, $skill_qual_stud);
+                        }
+                    }
+                }
+                //dd($auxQual);
+                $id_skill = '';
+                $index = 0;
+
+                if ($auxQual) {
+                    foreach ($auxQual as $skill_qual_stud) {
+                        $id_skill = $skill_qual_stud->id_skill;
+                        $r = Reinforcement::where('id_status', 1)->where('id_skill', $id_skill)->get();
+                        //dd($r);
+                        foreach ($r as $key => $value) {
+                            array_push($auxRein, $value);
+                        }
+
+                        $index = array_rand($auxRein, 1);
+                        $srs = new Skill_Rein_Stud();
+                        $srs->id_stud = $skill_qual_stud->id_stud;
+                        $srs->id_skill = $auxRein[$index]->id_skill;
+                        $srs->id_rein = $auxRein[$index]->id_rein;
+                        array_push($object, $srs);
+                        $srs->save();
+                    }
+                }
+
+                /*if ($auxQual) {
+                    foreach($reinf as $rein){
+                        foreach ($auxQual as $skill_qual_stud) {
+                            
+                                //array_push($auxRein, $rein);
+                                $sturein = Skill_Rein_Stud::where('id_skill', $skill_qual_stud->id_skill)->where('id_stud', $skill_qual_stud->id_stud)->get();
+                                
                                     $r = Reinforcement::where('id_status', 1)->where('id_skill', $rein->id_skill)->get();
-                                    foreach($r as $key => $value){
+                                    foreach ($r as $key => $value) {
                                         array_push($auxRein, $value);
                                     }
-                                    $index = array_rand($auxRein, 1);//get random reinforcement from skill
+                                //if (!$sturein) {
+                                    $index = array_rand($auxRein, 1); //get random reinforcement from skill
                                     //dd($auxRein);
+                                    if ($rein->id_skill == $skill_qual_stud->id_skill) {
                                     $srs = new Skill_Rein_Stud();
                                     $srs->id_stud = $skill_qual_stud->id_stud;
                                     $srs->id_skill = $auxRein[$index]->id_skill;
                                     $srs->id_rein = $auxRein[$index]->id_rein;
-                                    $srs->save();
-                                }
+                                    array_push($object, $srs);
+                                    //$srs->save();
+                                //}
                             }
                         }
                     }
-                }
+                }*/
             }
+            //dd($object);
+            return 'success';
         } catch (\Throwable $th) {
             return $th;
         }

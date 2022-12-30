@@ -70,16 +70,16 @@ class HomeController extends Controller
             $student = Student::where('id_user',$id_user)->get();
             $id_stud = $student[0]->id_stud;
             $rein = Skill_Rein_Stud::where('id_stud', $id_stud)->orderBy('created_at', 'DESC')->get();
-            //dd($rein);
+            //dd($rein, $id_stud);
             if($rein){
-                //$date = $rein[0]->created_at;
+                $date = $rein[0]->created_at;
                 foreach($rein as $key => $value){
-                    if($value->created_at == $rein[0]->created_at){
+                    if($value->created_at == $date){
                         array_push($aux, $value);
                     }
                 } 
             }
-            dd($aux, $rein);
+            //dd($aux, $rein, $date);
             
         }
         
