@@ -14,6 +14,8 @@ class Skill_Qual_Stud extends Model
     protected $primaryKey = 'id';
     protected $table = 'skill_qual_studs';
 
+    protected $fillable = ['id_qual', 'id_skill', 'id_user'];
+
     public function user(){
         return $this->belongsTo(User::class, 'id_user');
     }

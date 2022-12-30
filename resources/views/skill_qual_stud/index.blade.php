@@ -2,6 +2,14 @@
 
 @section('title', 'Register Scores')
 
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jquery-editable/css/jquery-editable.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jquery-editable/js/jquery-editable-poshytip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+</head>
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -17,7 +25,7 @@
             </div>
         </div>
         <ul>
-            <table class="table">
+            <table class="table table-bordered data-table">
                 <thead>
                     <tr>
                         <th scope="col">Student</th>
@@ -33,10 +41,10 @@
                             @foreach ($skills as $skill)
                                 @foreach ($skill_qual_stud as $score)
                                     @if ($score->id_skill == $skill->id_skill && $score->id_stud == $stud->id_stud)
-                                        <a href="" class="update" data-type="text" data-pk="{{ $score->id ?? null }}"
+                                        <td><a href="" data-name="id_qual" class="update" data-type="text" data-pk="{{ $score->id }}"
                                             data-title="Enter the score">
-                                            <td>{{ $score->qual->scale_qual ?? 'NE' }}</td>
-                                        </a>
+                                            {{ $score->qual->scale_qual ?? 'NE' }}
+                                        </a></td>
                                         @else
                                     @endif
                                 @endforeach
@@ -48,4 +56,23 @@
             </table>
         </ul>
     </div>
+    <script type="text/javascript">
+        $.fn.editable.defaults.mode = 'inline';
+      
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': '{{csrf_token()}}'
+            }
+        }); 
+      
+        $('.update').editable({
+               url: "{{ route('skill_qual_stud.update') }}",
+               type: 'text',
+               pk: 1,
+               name: 'name',
+               title: 'Enter Score'
+        });
+    </script>
 @endsection
+
+

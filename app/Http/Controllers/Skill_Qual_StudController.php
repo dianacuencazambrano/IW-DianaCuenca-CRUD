@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Qualification;
 use App\Models\Skill;
 use App\Models\Skill_Qual_Stud;
 use App\Models\Student;
@@ -33,11 +34,20 @@ class Skill_Qual_StudController extends Controller
 
     public function update(Request $request)
     {
-        dd($request->all());
         if ($request->ajax()) {
-            Skill_Qual_Stud::find($request->id)
+            //$qual = Qualification::where('scale_qual', $request->value)->get('id_qual');
+            //dd($qual);
+            if($request->value == 'A'){
+                $id = 1;
+            }else if($request->value == 'EP'){
+                $id = 2;
+            }else{
+                $id = 3;
+            }
+            
+            Skill_Qual_Stud::find($request->pk)
                 ->update([
-                    $request->id_qual => $request->value
+                    $request->name => $id
                 ]);
   
             return response()->json(['success' => true]);

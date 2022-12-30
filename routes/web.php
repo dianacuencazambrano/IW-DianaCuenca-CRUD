@@ -51,6 +51,10 @@ Route::prefix('skills')->middleware('auth')->group(function (){
     Route::patch('/changeStatus/{id}', 'App\Http\Controllers\SkillController@changeStatus')->name('skills.changeStatus');
     Route::get('/show/{id}', 'App\Http\Controllers\SkillController@show')->name('skills.show');
 });
+Route::prefix('skill_qual_stud')->middleware('auth')->group(function (){
+    Route::get('/', 'App\Http\Controllers\Skill_Qual_StudController@index')->name('skill_qual_stud.index');
+    Route::post('/', 'App\Http\Controllers\Skill_Qual_StudController@update')->name('skill_qual_stud.update');
+});
 
 Route::prefix('reinforcements')->middleware('auth')->group(function (){
     Route::get('/', 'App\Http\Controllers\ReinforcementController@index')->name('reinforcements.index');
@@ -62,10 +66,7 @@ Route::prefix('reinforcements')->middleware('auth')->group(function (){
     Route::get('/show/{id}', 'App\Http\Controllers\ReinforcementController@show')->name('reinforcements.show');
 });
 
-Route::prefix('skill_qual_stud')->middleware('auth')->group(function (){
-    Route::get('/', 'App\Http\Controllers\Skill_Qual_StudController@index')->name('skill_qual_stud.index');
-    Route::patch('/', 'App\Http\Controllers\Skill_Qual_StudController@update')->name('skill_qual_stud.update');
-});
+
 
 Route::prefix('skill_rein_stud')->middleware('auth')->group(function (){
     Route::patch('/', 'App\Http\Controllers\Skill_Rein_StudController@publishReinforcements')->name('skill_rein_stud.publish');

@@ -19,7 +19,7 @@ class Skill_Rein_StudController extends Controller
             $class = (count($classT) == 0) ? '3' : $classT[0]->id_class;
             $skill_qual_stud = Skill_Qual_Stud::all();
             $skill_rein_stud = (Skill_Rein_Stud::all()) ? Skill_Rein_Stud::all() : [];
-            $students = (Auth()->user()->id_role == 1) ? Student::where('id_status', 1)->get() : Student::where('id_class', $class)->get();
+            $students = (Auth()->user()->id_role == 1) ? Student::all() : Student::where('id_class', $class)->get();//corregir la clase
             $skills = Skill::where('id_status', 1)->get();
             $reinf = Reinforcement::where('id_status', 1)->get();
             $aux = [];
