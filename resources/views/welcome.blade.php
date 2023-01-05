@@ -36,6 +36,8 @@
                 </tbody>
             </table>
         </ul>
+        
+        <h1>{{ 'NE: ' .$cont_NE. ' EP: ' .  $cont_EP . ' A: ' . $cont_A }}</h1>
     </div>
     <div class="container">
         <div class="row">

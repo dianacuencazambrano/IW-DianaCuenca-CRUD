@@ -14,9 +14,32 @@ class HomeController extends Controller
 {
     public function index(){
         try{
+            $cont_A = 0;
+            $cont_EP = 0;
+            $cont_NE = 0;
+            $sqs = Skill_Qual_Stud::all();
+            foreach($sqs as $aux){
+                switch ($aux->id_qual){
+                    case 1:
+                        $cont_A++;
+                        break;
+                    case 2:
+                        $cont_EP++;
+                        break;
+                    case 3:
+                        $cont_NE++;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
             return view('welcome',[
                 'quals' => Qualification::all(),
-                'classrooms' => Classroom::all()
+                'classrooms' => Classroom::all(),
+                'cont_A' => $cont_A,
+                'cont_EP' => $cont_EP,
+                'cont_NE' => $cont_NE,
             ]);
         } catch (\Throwable $th) {
             return response()->json(['error' => $th], 400);
